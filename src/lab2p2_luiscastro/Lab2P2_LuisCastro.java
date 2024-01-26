@@ -152,7 +152,7 @@ static Scanner leerS = new Scanner(System.in);
                                     String titulo_curso = leerS.nextLine();
                                     nombre_recursos.add(titulo_curso);
                                     
-                                    System.out.println("Ingrese el nombe del instructor del curso: ");
+                                    System.out.println("Ingrese el nombre del instructor del curso: ");
                                     String nombre_instructor = leerS.nextLine();
                                     
                                     System.out.println("Ingrese la duracion en semanas del curso (numero):");
@@ -182,9 +182,9 @@ static Scanner leerS = new Scanner(System.in);
                                     String duracion_con = leerS.nextLine();
                                     
                                     System.out.println("Ingrese el enlace de acesso de la conferencia: ");
-                                    String enlance = leerS.nextLine();
+                                    String enlace = leerS.nextLine();
                                     
-                                    ConferenciasVir conferencias = new ConferenciasVir(titulo_conferencia, nombre_conferencista, fecha_con, duracion_con, enlance);
+                                    ConferenciasVir conferencias = new ConferenciasVir(titulo_conferencia, nombre_conferencista, fecha_con, duracion_con, enlace);
                                     recursos.add(conferencias);
                                     break;
                             }//FIN SWITCH OPCION 2
@@ -213,9 +213,12 @@ static Scanner leerS = new Scanner(System.in);
                             imprimirNombres(nombre_recursos);
                             System.out.println("Ingrese el indice del recurso a eliminar.");
                             int index_elim = leer.nextInt();
-                            
-                            recursos.remove(index_elim);
+                            while(index_elim < 0 || index_elim >= nombre_recursos.size()){
+                                System.out.println("Indice fuera de rango. Ingrese de nuevo:");
+                                index_elim = leer.nextInt();
+                            }
                             nombre_recursos.remove(index_elim);
+                            recursos.remove(index_elim);
                             System.out.println("Se ha eliminado el recurso exitosamente.");
                         }
                     }
@@ -227,16 +230,21 @@ static Scanner leerS = new Scanner(System.in);
                     }else if (tipo.equals(profesor.getTipo_usuario())){
                         System.out.println("Solo los bibliotecarios pueden usar esta opcion!");
                         break;
+                    }else if(nombre_recursos.isEmpty()){
+                        System.out.println("La lista de recursos esta vacia!");
                     }else{
                         imprimirNombres(nombre_recursos);
                         System.out.println("Ingrese el indice del recurso a modificar.");
                         int index_modif = leer.nextInt();
-                        
+                        while(index_modif < 0 || index_modif >= nombre_recursos.size()){
+                                System.out.println("Indice fuera de rango. Ingrese de nuevo:");
+                                index_modif = leer.nextInt();
+                            }
                         if(recursos.get(index_modif) instanceof Libros){
                             System.out.println("Modificar libro.");
                             System.out.println("Ingrese el nuevo titulo del libro:");
                             String titulo_libro = leerS.nextLine();
-                            ((Libros)nombre_recursos.get(index_modif)).setTitulo(titulo_libro);
+                            nombre_recursos.set(index_modif, titulo_libro);
                             
                             ((Libros)recursos.get(index_modif)).setTitulo(titulo_libro);
                             
@@ -264,7 +272,7 @@ static Scanner leerS = new Scanner(System.in);
                             System.out.println("Modificar Articulo.");
                                     System.out.println("Ingrese el nuevo titulo del articulo:");
                                     String nombre_articulo = leerS.nextLine();
-                                    ((Articulos)nombre_recursos.get(index_modif)).setTitulo(nombre_articulo);
+                                    nombre_recursos.set(index_modif, nombre_articulo);
                                     
                                     ((Articulos)recursos.get(index_modif)).setTitulo(nombre_articulo);
                                     
@@ -291,7 +299,58 @@ static Scanner leerS = new Scanner(System.in);
                                     ((Articulos)recursos.get(index_modif)).setAcceso_linea(acceso_articulo);
                                     
                         }else if(recursos.get(index_modif) instanceof CursosenLinea){
-                            
+                            System.out.println("Modificar Curso en linea.");
+                                    System.out.println("Ingrese el nuevo titulo del Curso en linea: ");
+                                    String titulo_curso = leerS.nextLine();
+                                    
+                                    nombre_recursos.set(index_modif, titulo_curso);
+                                    
+                                    ((CursosenLinea)recursos.get(index_modif)).setTitulo(titulo_curso);
+                                    
+                                    System.out.println("Ingrese el nuevo nombre del instructor del curso: ");
+                                    String nombre_instructor = leerS.nextLine();
+                                    
+                                    ((CursosenLinea)recursos.get(index_modif)).setInstructor(nombre_instructor);
+                                    
+                                    System.out.println("Ingrese la duracion en semanas del curso (numero):");
+                                    int duracion_curso = leer.nextInt();
+                                    
+                                    ((CursosenLinea)recursos.get(index_modif)).setSemanas(duracion_curso);
+                                    
+                                    System.out.println("Ingrese la plataforma de enseñanza: ");
+                                    String plataforma = leerS.nextLine();
+                                    
+                                    ((CursosenLinea)recursos.get(index_modif)).setPlataforma(plataforma);
+                        }else{
+                            System.out.println("Modificar Conferencias Virtuales.");
+                                    System.out.println("Ingrese el titulo de la conferencia: ");
+                                    String titulo_conferencia = leerS.nextLine();
+                                    
+                                    nombre_recursos.set(index_modif,titulo_conferencia);
+                                    
+                                    ((ConferenciasVir)recursos.get(index_modif)).setTitulo(titulo_conferencia);
+                                    
+                                    System.out.println("Ingrese el nombre del conferencista: ");
+                                    String nombre_conferencista = leerS.nextLine();
+                                    
+                                    ((ConferenciasVir)recursos.get(index_modif)).setConferencista(nombre_conferencista);
+                                    
+                                    System.out.println("Ingrese la fecha de la conferencia en formato dd/MM/yyyy");
+                                    String fecha_c = leerS.nextLine();
+                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                    Date fecha_con = sdf.parse(fecha_c);
+                                    
+                                    ((ConferenciasVir)recursos.get(index_modif)).setFecha(fecha_con);
+                                    
+                                    System.out.println("Ingrese la duracion de la conferencia: ");
+                                    String duracion_con = leerS.nextLine();
+                                    
+                                    ((ConferenciasVir)recursos.get(index_modif)).setDuracion(duracion_con);
+                                    
+                                    System.out.println("Ingrese el enlace de acesso de la conferencia: ");
+                                    String enlace = leerS.nextLine();
+                                    
+                                    ((ConferenciasVir)recursos.get(index_modif)).setEnlace(enlace);
                         }
                     }
                     break;

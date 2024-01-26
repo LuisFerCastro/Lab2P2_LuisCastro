@@ -55,7 +55,7 @@ public class CursosenLinea {
 
     @Override
     public String toString() {
-        return "CursosenLinea:\n" + "Titulo= " + titulo + "\nInstructor= " + instructor + "\nSemanas= " + semanas + "\nPlataforma= " + plataforma + "\n";
+        return "\nCursosenLinea:\n" + "Titulo= " + titulo + "\nInstructor= " + instructor + "\nSemanas= " + semanas + "\nPlataforma= " + plataforma + "\n";
     }
     
     

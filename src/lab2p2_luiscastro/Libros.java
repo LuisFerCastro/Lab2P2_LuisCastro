@@ -65,7 +65,7 @@ public class Libros {
 
     @Override
     public String toString() {
-        return "Libros: \n" + "Titulo= " + titulo + "\nAutor= " + autor + "\nGenero= " + genero + ", \nA\u00f1o_publicacion= " + año_publicacion + "\nDisponibilidad=" + disponibilidad + "\n";
+        return "\nLibros: \n" + "Titulo= " + titulo + "\nAutor= " + autor + "\nGenero= " + genero + ", \nA\u00f1o_publicacion= " + año_publicacion + "\nDisponibilidad=" + disponibilidad + "\n";
     }
       
 }
