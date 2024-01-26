@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+package lab2p2_luiscastro;
 
 /**
  *
@@ -46,6 +47,4 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "nombre_usuario=" + nombre_usuario + ", contra=" + contra + ", tipo_usuario=" + tipo_usuario + '}';
     }
-    
-    
 }
