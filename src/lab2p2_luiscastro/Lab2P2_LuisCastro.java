@@ -8,7 +8,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  *
@@ -116,9 +118,9 @@ static Scanner leerS = new Scanner(System.in);
                                     String anno_libro = leerS.nextLine();
                                     
                                     System.out.println("Ingrese la disponibilidad del libro:(si/no):");
-                                    String dispobibilad_libro = leerS.nextLine();
+                                    String disponibilidad_libro = leerS.nextLine();
                                     
-                                    Libros libro = new Libros(titulo_libro, autor_libro, genero_libro, anno_libro, dispobibilad_libro);
+                                    Libros libro = new Libros(titulo_libro, autor_libro, genero_libro, anno_libro, disponibilidad_libro);
                                     recursos.add(libro);
                                     break;
                                 case 2:
@@ -213,6 +215,7 @@ static Scanner leerS = new Scanner(System.in);
                             int index_elim = leer.nextInt();
                             
                             recursos.remove(index_elim);
+                            nombre_recursos.remove(index_elim);
                             System.out.println("Se ha eliminado el recurso exitosamente.");
                         }
                     }
@@ -225,7 +228,71 @@ static Scanner leerS = new Scanner(System.in);
                         System.out.println("Solo los bibliotecarios pueden usar esta opcion!");
                         break;
                     }else{
+                        imprimirNombres(nombre_recursos);
+                        System.out.println("Ingrese el indice del recurso a modificar.");
+                        int index_modif = leer.nextInt();
                         
+                        if(recursos.get(index_modif) instanceof Libros){
+                            System.out.println("Modificar libro.");
+                            System.out.println("Ingrese el nuevo titulo del libro:");
+                            String titulo_libro = leerS.nextLine();
+                            ((Libros)nombre_recursos.get(index_modif)).setTitulo(titulo_libro);
+                            
+                            ((Libros)recursos.get(index_modif)).setTitulo(titulo_libro);
+                            
+                            System.out.println("Ingrese el nuevo autor del libro: ");
+                            String autor_libro = leerS.nextLine();
+                            
+                            ((Libros)recursos.get(index_modif)).setAutor(autor_libro);
+                            
+                            System.out.println("Ingrese el nuevo genero del libro: ");
+                            String genero_libro = leerS.nextLine();
+                            
+                            ((Libros)recursos.get(index_modif)).setGenero(genero_libro);
+                            
+                            System.out.println("Ingrese el nuevo año de publicacion: ");
+                            String anno_libro = leerS.nextLine();
+                            
+                            ((Libros)recursos.get(index_modif)).setAño_publicacion(anno_libro);
+                            
+                            System.out.println("Ingrese la nueva disponibilidad del libro:(si/no):");
+                            String disponibilidad_libro = leerS.nextLine();
+                            
+                            ((Libros)recursos.get(index_modif)).setDisponibilidad(disponibilidad_libro);
+                            
+                        }else if(recursos.get(index_modif)instanceof Articulos){
+                            System.out.println("Modificar Articulo.");
+                                    System.out.println("Ingrese el nuevo titulo del articulo:");
+                                    String nombre_articulo = leerS.nextLine();
+                                    ((Articulos)nombre_recursos.get(index_modif)).setTitulo(nombre_articulo);
+                                    
+                                    ((Articulos)recursos.get(index_modif)).setTitulo(nombre_articulo);
+                                    
+                                    System.out.println("Ingrese el nuevo autor del articulo: ");
+                                    String autor_articulo = leerS.nextLine();
+                                    
+                                    ((Articulos)recursos.get(index_modif)).setAutor(autor_articulo);
+                                    
+                                    System.out.println("Ingrese el nuevo tema del articulo: ");
+                                    String tema_articulo = leerS.nextLine();
+                                    
+                                    ((Articulos)recursos.get(index_modif)).setTema(tema_articulo);
+                                    
+                                    System.out.println("Ingrese la nueva fecha de publicacion del articulo en formato(dd/MM/yyyy): ");
+                                    String fecha_articulo = leerS.nextLine();
+                                    SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+                                    Date fecha = sf.parse(fecha_articulo);
+                                    
+                                    ((Articulos)recursos.get(index_modif)).setFecha_publicacion(fecha);
+                                    
+                                    System.out.println("Ingrese el nuevo acceso en linea del articulo:(si/no):");
+                                    String acceso_articulo = leerS.nextLine();
+                                    
+                                    ((Articulos)recursos.get(index_modif)).setAcceso_linea(acceso_articulo);
+                                    
+                        }else if(recursos.get(index_modif) instanceof CursosenLinea){
+                            
+                        }
                     }
                     break;
             }//FIN DEL SWITCH
