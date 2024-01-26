@@ -94,10 +94,11 @@ static Scanner leerS = new Scanner(System.in);
                         System.out.println("2. Articulos.");
                         System.out.println("3. Curso en Linea.");
                         System.out.println("4. Conferencias virtuales.");
+                        System.out.println("5. Salir del submenu.");
                         System.out.println("Ingrese su opcion: ");
                         int opcion_agregar = leer.nextInt();
                         
-                        while(opcion_agregar > 0 && opcion_agregar <5){
+                        while(opcion_agregar != 5){
                             switch(opcion_agregar){
                                 case 1:
                                     System.out.println("Agregar libro.");
@@ -184,13 +185,48 @@ static Scanner leerS = new Scanner(System.in);
                                     ConferenciasVir conferencias = new ConferenciasVir(titulo_conferencia, nombre_conferencista, fecha_con, duracion_con, enlance);
                                     recursos.add(conferencias);
                                     break;
-                            }
-                        }
+                            }//FIN SWITCH OPCION 2
+                            System.out.println("****Menu de agregar****");
+                            System.out.println("1. Libros.");
+                            System.out.println("2. Articulos.");
+                            System.out.println("3. Curso en Linea.");
+                            System.out.println("4. Conferencias virtuales.");
+                            System.out.println("5. Salir del submenu.");
+                            System.out.println("Ingrese su opcion: ");
+                            opcion_agregar = leer.nextInt();
+                        }// FIN WHILE OPCION 2
                     }
                     break;
                 case 3:
+                    if(tipo.equals(estudiante.getTipo_usuario())){
+                        System.out.println("Solo los bibliotecarios pueden usar esta opcion!");
+                        break;
+                    }else if (tipo.equals(profesor.getTipo_usuario())){
+                        System.out.println("Solo los bibliotecarios pueden usar esta opcion!");
+                        break;
+                    }else{
+                        if(nombre_recursos.isEmpty()){
+                            System.out.println("La lista de recursos esta vacia!");
+                        }else{
+                            imprimirNombres(nombre_recursos);
+                            System.out.println("Ingrese el indice del recurso a eliminar.");
+                            int index_elim = leer.nextInt();
+                            
+                            recursos.remove(index_elim);
+                            System.out.println("Se ha eliminado el recurso exitosamente.");
+                        }
+                    }
                     break;
                 case 4:
+                    if(tipo.equals(estudiante.getTipo_usuario())){
+                        System.out.println("Solo los bibliotecarios pueden usar esta opcion!");
+                        break;
+                    }else if (tipo.equals(profesor.getTipo_usuario())){
+                        System.out.println("Solo los bibliotecarios pueden usar esta opcion!");
+                        break;
+                    }else{
+                        
+                    }
                     break;
             }//FIN DEL SWITCH
             System.out.println("*****Menu*****");
@@ -204,4 +240,10 @@ static Scanner leerS = new Scanner(System.in);
         }//FIN DEL WHILE
     }
     
+    public static void imprimirNombres(ArrayList nombre){
+        System.out.println("Listas: ");
+        for (int i = 0; i < nombre.size(); i++) {
+            System.out.println(i+". "+nombre.get(i));
+        }
+    }
 }
