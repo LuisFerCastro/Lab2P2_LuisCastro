@@ -18,27 +18,48 @@ static Scanner leerS = new Scanner(System.in);
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ArrayList<Usuario> usuarios = new ArrayList();
         Usuario estudiante = new Usuario("Juan", "soyJuan123", "Estudiante");
         Usuario profesor = new Usuario("Rigoberto","cienciasdelasalud03","Profesor");
         Usuario bibliotecario = new Usuario("Luis","Bibliotecario789","Bibliotecario");
-        
+        usuarios.add(estudiante);
+        usuarios.add(profesor);
+        usuarios.add(bibliotecario);
         String tipo = "";
-        System.out.println("Inicio de sesion.");
-        System.out.println("Ingrese su nombre: ");
-        String nombre = leerS.nextLine();
-        System.out.println("Ingrese su contraseña: ");
-        String contra = leerS.nextLine();
-        
-        
-        if(nombre.equals(estudiante.getNombre_usuario())&& contra.equals(estudiante.getContra())){
-            tipo = "Estudiante";
-        }else if(nombre.equals(profesor.getNombre_usuario())&& contra.equals(profesor.getContra())){
-            tipo = "Profesor";
-        }else if(nombre.equals(bibliotecario.getNombre_usuario())&& contra.equals(bibliotecario.getContra())){
-            tipo = "Bibliotecario";
-        }else{
-            System.out.println("Su nombre o contraseña no concuerda con ningun usuario.");
+        int cont = 0;
+        while(cont == 0){
+            System.out.println("Inicio de sesion.");
+            System.out.println("Ingrese su nombre: ");
+            String nombre = leerS.nextLine();
+            System.out.println("Ingrese su contraseña: ");
+            String contra = leerS.nextLine();
+            for(int i = 0; i < usuarios.size();i++){
+                if(nombre.equals(estudiante.getNombre_usuario())&& contra.equals(estudiante.getContra())){
+                    tipo = "Estudiante";
+                    cont++;
+                    if(cont == 1){
+                        break;
+                    }
+                }else if(nombre.equals(profesor.getNombre_usuario())&& contra.equals(profesor.getContra())){
+                    tipo = "Profesor";
+                    cont++;
+                    if(cont == 1){
+                        break;
+                    }
+                }else if(nombre.equals(bibliotecario.getNombre_usuario())&& contra.equals(bibliotecario.getContra())){
+                    tipo = "Bibliotecario";
+                    cont++;
+                    if(cont == 1){
+                        break;
+                    }
+                }else{
+                    System.out.println("Usuario invalido!");
+                    cont = 0;
+                }
+            }
         }
+        
+        
         System.out.println("*****Menu*****");
         System.out.println("1. Listar Recursos.");
         System.out.println("2. Crear Recursos. (Profesores y Bibliotecarios)");
