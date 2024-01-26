@@ -4,7 +4,10 @@
  */
 package lab2p2_luiscastro;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 /**
@@ -17,8 +20,9 @@ static Scanner leerS = new Scanner(System.in);
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         ArrayList recursos = new ArrayList();
+        ArrayList nombre_recursos = new ArrayList();
         ArrayList<Usuario> usuarios = new ArrayList();
         Usuario estudiante = new Usuario("Juan", "soyJuan123", "Estudiante");
         Usuario profesor = new Usuario("Rigoberto","cienciasdelasalud03","Profesor");
@@ -56,11 +60,11 @@ static Scanner leerS = new Scanner(System.in);
                     }
                 }else{
                     cont = 0;
-                }
-                if (cont == 0){
-                    System.out.println("Usuario invalido! Ingrese de nuevo: ");
-                }
+                }    
             }
+            if (cont == 0){
+                    System.out.println("Usuario o contraseña invalido! Ingrese de nuevo: ");
+                }
         }
         
         System.out.println("*****Menu*****");
@@ -96,12 +100,89 @@ static Scanner leerS = new Scanner(System.in);
                         while(opcion_agregar > 0 && opcion_agregar <5){
                             switch(opcion_agregar){
                                 case 1:
+                                    System.out.println("Agregar libro.");
+                                    System.out.println("Ingrese el titulo del libro:");
+                                    String titulo_libro = leerS.nextLine();
+                                    nombre_recursos.add(titulo_libro);
+                                    
+                                    System.out.println("Ingrese el autor del libro: ");
+                                    String autor_libro = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese el genero del libro: ");
+                                    String genero_libro = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese el año de publicacion: ");
+                                    String anno_libro = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese la disponibilidad del libro:(si/no):");
+                                    String dispobibilad_libro = leerS.nextLine();
+                                    
+                                    Libros libro = new Libros(titulo_libro, autor_libro, genero_libro, anno_libro, dispobibilad_libro);
+                                    recursos.add(libro);
                                     break;
                                 case 2:
+                                    System.out.println("Agregar Articulo.");
+                                    System.out.println("Ingrese el titulo del articulo:");
+                                    String nombre_articulo = leerS.nextLine();
+                                    nombre_recursos.add(nombre_articulo);
+                                    
+                                    System.out.println("Ingrese el autor del articulo: ");
+                                    String autor_articulo = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese el tema del articulo: ");
+                                    String tema_articulo = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese la fecha de publicacion del articulo en formato(dd/MM/yyyy): ");
+                                    String fecha_articulo = leerS.nextLine();
+                                    SimpleDateFormat sf = new SimpleDateFormat("dd/MM/yyyy");
+                                    Date fecha = sf.parse(fecha_articulo);
+                                    
+                                    System.out.println("Ingrese el acceso en linea del articulo:(si/no):");
+                                    String acceso_articulo = leerS.nextLine();
+                                    
+                                    Articulos articulo = new Articulos(nombre_articulo, autor_articulo, tema_articulo, fecha, acceso_articulo);
+                                    recursos.add(articulo);
                                     break;
                                 case 3:
+                                    System.out.println("Agregar Curso en linea.");
+                                    System.out.println("Ingrese el titulo del Curso en linea: ");
+                                    String titulo_curso = leerS.nextLine();
+                                    nombre_recursos.add(titulo_curso);
+                                    
+                                    System.out.println("Ingrese el nombe del instructor del curso: ");
+                                    String nombre_instructor = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese la duracion en semanas del curso (numero):");
+                                    int duracion_curso = leer.nextInt();
+                                    
+                                    System.out.println("Ingrese la plataforma de enseñanza: ");
+                                    String plataforma = leerS.nextLine();
+                                    
+                                    CursosenLinea cursos = new CursosenLinea(titulo_curso, nombre_instructor, duracion_curso, plataforma);
+                                    recursos.add(cursos);
                                     break;
                                 case 4:
+                                    System.out.println("Agregar Conferencias Virtuales.");
+                                    System.out.println("Ingrese el titulo de la conferencia: ");
+                                    String titulo_conferencia = leerS.nextLine();
+                                    nombre_recursos.add(titulo_conferencia);
+                                    
+                                    System.out.println("Ingrese el nombre del conferencista: ");
+                                    String nombre_conferencista = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese la fecha de la conferencia en formato dd/MM/yyyy");
+                                    String fecha_c = leerS.nextLine();
+                                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                                    Date fecha_con = sdf.parse(fecha_c);
+                                    
+                                    System.out.println("Ingrese la duracion de la conferencia: ");
+                                    String duracion_con = leerS.nextLine();
+                                    
+                                    System.out.println("Ingrese el enlace de acesso de la conferencia: ");
+                                    String enlance = leerS.nextLine();
+                                    
+                                    ConferenciasVir conferencias = new ConferenciasVir(titulo_conferencia, nombre_conferencista, fecha_con, duracion_con, enlance);
+                                    recursos.add(conferencias);
                                     break;
                             }
                         }
