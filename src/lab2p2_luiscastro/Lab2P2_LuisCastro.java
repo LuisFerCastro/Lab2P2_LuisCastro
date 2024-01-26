@@ -18,6 +18,7 @@ static Scanner leerS = new Scanner(System.in);
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ArrayList recursos = new ArrayList();
         ArrayList<Usuario> usuarios = new ArrayList();
         Usuario estudiante = new Usuario("Juan", "soyJuan123", "Estudiante");
         Usuario profesor = new Usuario("Rigoberto","cienciasdelasalud03","Profesor");
@@ -25,6 +26,7 @@ static Scanner leerS = new Scanner(System.in);
         usuarios.add(estudiante);
         usuarios.add(profesor);
         usuarios.add(bibliotecario);
+        
         String tipo = "";
         int cont = 0;
         while(cont == 0){
@@ -53,12 +55,13 @@ static Scanner leerS = new Scanner(System.in);
                         break;
                     }
                 }else{
-                    System.out.println("Usuario invalido!");
                     cont = 0;
+                }
+                if (cont == 0){
+                    System.out.println("Usuario invalido! Ingrese de nuevo: ");
                 }
             }
         }
-        
         
         System.out.println("*****Menu*****");
         System.out.println("1. Listar Recursos.");
@@ -71,8 +74,38 @@ static Scanner leerS = new Scanner(System.in);
         while(opcion !=5){
             switch(opcion){
                 case 1:
+                    if(recursos.isEmpty()){
+                        System.out.println("No hay ningun recurso para mostrar!");
+                    }else{
+                        System.out.println(recursos);
+                    }
                     break;
                 case 2:
+                    if(tipo.equals(estudiante.getTipo_usuario())){
+                        System.out.println("Solo los profesores y bibliotecarios pueden usar esta opcion!");
+                        break;
+                    }else{
+                        System.out.println("****Menu de agregar****");
+                        System.out.println("1. Libros.");
+                        System.out.println("2. Articulos.");
+                        System.out.println("3. Curso en Linea.");
+                        System.out.println("4. Conferencias virtuales.");
+                        System.out.println("Ingrese su opcion: ");
+                        int opcion_agregar = leer.nextInt();
+                        
+                        while(opcion_agregar > 0 && opcion_agregar <5){
+                            switch(opcion_agregar){
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4:
+                                    break;
+                            }
+                        }
+                    }
                     break;
                 case 3:
                     break;
