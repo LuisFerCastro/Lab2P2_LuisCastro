@@ -67,7 +67,7 @@ public class ConferenciasVir {
 
     @Override
     public String toString() {
-        return "\nConferencias Virtuales: " + "\nTitulo= " + titulo + "\nConferencista= " + conferencista + "\nFecha= " + fecha + "\nDuracion= " + duracion + "\nEnlace=" + enlace + "\n";
+        return "\nConferencia Virtual: " + "\nTitulo= " + titulo + "\nConferencista= " + conferencista + "\nFecha= " + fecha + "\nDuracion= " + duracion + "\nEnlace=" + enlace + "\n";
     }
     
     
